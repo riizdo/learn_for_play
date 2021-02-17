@@ -8,8 +8,8 @@ from pygame.locals import *
 
 
 class Exercise():
-    def __init__(self):
-        self.__points = 0
+    def __init__(self, level):
+        self.__level = level
     
 
     def draw(self):
