@@ -1,3 +1,8 @@
+# archive:      screen.py
+# author:       riizdo
+# date:         15-02-2021
+# description:  window file
+
 import pygame, os
 from pygame.locals import *
 
