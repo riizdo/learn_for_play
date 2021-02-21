@@ -9,9 +9,10 @@ import random
 
 
 class Exercise():
-    def __init__(self, level):
+    def __init__(self, level, id):
         self.level = level
         self.elements = {}
+        self.elements['id'] = id
         self.elements['element'] = []
         self.elements['operation'] = []
 
@@ -46,8 +47,8 @@ class Exercise():
 
 
 class Adds(Exercise):
-    def __init__(self, level):
-        Exercise.__init__(self, level)
+    def __init__(self, level, id):
+        Exercise.__init__(self, level, id)
         self.elements['operation'] = '+'
 
         nElements = self.getNElements()
@@ -85,6 +86,8 @@ class Adds(Exercise):
     def defineResult(self):
         result = 0
         for element in self.elements:
-            result += element
+            if element == 'element':
+                for num in self.elements[element]:
+                    result += num
         return result
 

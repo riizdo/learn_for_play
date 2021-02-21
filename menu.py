@@ -1,3 +1,10 @@
+# archive:      menu.py
+# author:       riizdo
+# date:         15-11-2020
+# description:  auxiliary file for screen's elements
+
+
+
 import pygame
 from pygame.locals import *
 
