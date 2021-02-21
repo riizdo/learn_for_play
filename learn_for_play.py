@@ -23,7 +23,7 @@ class LearnForPlay():
             pass
         if file == [] or file == '' or file == None:
             self.createConfig()
-            self.config()
+            self.getConfig()
         else:
             lines = file.split('\n')
             for line in lines:
