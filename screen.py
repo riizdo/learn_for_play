@@ -5,6 +5,7 @@
 
 import pygame, os
 from pygame.locals import *
+import menu
 
 
 YELLOW = (150, 150, 0)
@@ -16,49 +17,42 @@ class Screen():
         pygame.init()
         self.__background = YELLOW
         self.__screenSize = (1400, 800)
-        self.__screen = pygame.display.set_mode(self.__screenSize)
-        pygame.FULLSCREEN
+        self.__screen = pygame.display.set_mode(flags = pygame.FULLSCREEN)
         pygame.display.set_caption('learn for play')
         self.__screen.fill(self.__background)
+        self.__margin = self.__screen.get_rect()
+
+        self.__elements = []
+        self.__dataExercise = []
 
         #self.__font
-        self.__fontSize = 16
-        self.exist = False
+        self.__fontSize = 50
+
+        self.__label = menu.Label('hola', self.__fontSize, 'purisa')
+        self.__label.center(self.__margin)
 
 
-    def testFont(self):
-        self.__textPos = 0
-        for element in pygame.font.get_fonts():
-            try:   
-                self.__font = element
-                text = 'hola ' + element
-                tFont = pygame.font.sysFont(self.__font, self.__fontSize)
+    def addExercise(self, exercise):
+        self.__dataExercise.clear()
+        for element in exercise:
+            self.__dataExercise.append(element)
 
-            
-                self.__surfaceText = tFont.render(text, True, WHITE)
-                self.exist = True
-            except:
-                self.exist = False
-                pass
 
-            self.__textPos += 15
-        
-        
     def start(self):
-        while True:
+        state = True
+        while state:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    pygame.quit()
-                    break
+                    state = False
+                if event.type == pygame.KEYUP:
+                    if event.key == K_ESCAPE:
+                        state = False
                     
             self.__screen.fill(self.__background)
-            if self.exist:
-                self.__screen.blit(self.__surfaceText, (0, self.__textPos))
+            
+            self.__label.draw(self.__screen, 'hola')
             pygame.display.flip()
 
-
-    def exit(self):
-        pygame.quit()
             
             
             
